@@ -261,6 +261,17 @@ dependencies = [
 
 [[package]]
 org = "ballerina"
+name = "sql"
+version = "1.6.3"
+dependencies = [
+	{org = "ballerina", name = "io"},
+	{org = "ballerina", name = "jballerina.java"},
+	{org = "ballerina", name = "lang.object"},
+	{org = "ballerina", name = "time"}
+]
+
+[[package]]
+org = "ballerina"
 name = "task"
 version = "2.3.0"
 dependencies = [
@@ -325,6 +336,29 @@ dependencies = [
 
 [[package]]
 org = "ballerinax"
+name = "mysql"
+version = "1.6.2"
+dependencies = [
+	{org = "ballerina", name = "crypto"},
+	{org = "ballerina", name = "io"},
+	{org = "ballerina", name = "jballerina.java"},
+	{org = "ballerina", name = "sql"},
+	{org = "ballerina", name = "time"}
+]
+modules = [
+	{org = "ballerinax", packageName = "mysql", moduleName = "mysql"}
+]
+
+[[package]]
+org = "ballerinax"
+name = "mysql.driver"
+version = "1.4.1"
+modules = [
+	{org = "ballerinax", packageName = "mysql.driver", moduleName = "mysql.driver"}
+]
+
+[[package]]
+org = "ballerinax"
 name = "trigger.asgardeo"
 version = "0.4.0"
 dependencies = [
@@ -348,6 +382,8 @@ dependencies = [
 	{org = "ballerina", name = "http"},
 	{org = "ballerina", name = "log"},
 	{org = "ballerinai", name = "observe"},
+	{org = "ballerinax", name = "mysql"},
+	{org = "ballerinax", name = "mysql.driver"},
 	{org = "ballerinax", name = "trigger.asgardeo"}
 ]
 modules = [
