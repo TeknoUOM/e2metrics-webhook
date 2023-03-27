@@ -2,6 +2,7 @@ import ballerinax/trigger.asgardeo;
 import ballerina/log;
 import ballerina/http;
 import ballerinax/mysql;
+import ballerinax/mysql.driver as _;
 
 configurable asgardeo:ListenerConfig config = ?;
 
