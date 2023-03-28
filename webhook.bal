@@ -12,7 +12,7 @@ mysql:Options mysqlOptions = {
     ssl: {
         mode: mysql:SSL_PREFERRED
     },
-    connectTimeout: 10
+    connectTimeout: 100
 };
 mysql:Client dbClient = check new ("e2metrics.cu0vbdes0onb.eu-north-1.rds.amazonaws.com", "admin", "yYaN!3nGec%SHt", "E2Metrices", 3306);
 
