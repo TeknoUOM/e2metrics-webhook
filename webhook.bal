@@ -4,6 +4,8 @@ import ballerina/http;
 import ballerinax/mysql;
 import ballerinax/mysql.driver as _;
 
+http:Client github = check new ("https://ccc89048-bed6-43e6-9dd7-51f1e03d45c4-dev.e1-us-east-azure.choreoapis.dev/hmjo/e2metrics/1.0.0");
+
 configurable asgardeo:ListenerConfig config = ?;
 
 listener http:Listener httpListener = new (8090);
@@ -28,7 +30,6 @@ type Event record {
 service asgardeo:RegistrationService on webhookListener {
 
     remote function onAddUser(asgardeo:AddUserEvent event) returns error? {
-        //Event eventOb = check event.cloneWithType(Event);
         string UserID = <string>event?.eventData?.userId;
         string UserName = <string>event?.eventData?.userName;
         do {
@@ -38,6 +39,10 @@ service asgardeo:RegistrationService on webhookListener {
         } on fail var e {
             log:printInfo(e.toString());
         }
+
+        string url = "/user/changeUserGroup?userId=" + UserID + "&groupName=Free";
+
+        json _ = check github->put(url, {});
 
     }
 
