@@ -42,7 +42,11 @@ service asgardeo:RegistrationService on webhookListener {
 
         string url = "/user/changeUserGroup?userId=" + UserID + "&groupName=Free";
 
-        json _ = check github->put(url, {});
+        do {
+            json _ = check github->put(url, {});
+        } on fail var e {
+            log:printInfo(e.toString());
+        }
 
     }
 
