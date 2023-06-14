@@ -43,7 +43,7 @@ service asgardeo:RegistrationService on webhookListener {
         do {
             _ = check dbClient->execute(`
 	            INSERT INTO AlertLimits (UserID,WontFixIssuesRatio,WeeklyCommitCount,MeanPullRequestResponseTime,MeanLeadTimeForPulls,ResponseTimeforIssue)
-	            VALUES (${UserID};`);
+	            VALUES (${UserID});`);
         } on fail var e {
             log:printInfo(e.toString());
         }
