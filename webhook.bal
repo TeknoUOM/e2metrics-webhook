@@ -40,10 +40,10 @@ service asgardeo:RegistrationService on webhookListener {
             log:printInfo(e.toString());
         }
 
-        string url = "/user/changeUserGroup?userId=" + UserID + "&groupName=Free";
-
         do {
-            json _ = check github->put(url, {});
+            _ = check dbClient->execute(`
+	            INSERT INTO AlertLimits (UserID,WontFixIssuesRatio,WeeklyCommitCount,MeanPullRequestResponseTime,MeanLeadTimeForPulls,ResponseTimeforIssue)
+	            VALUES (${UserID};`);
         } on fail var e {
             log:printInfo(e.toString());
         }
