@@ -9,7 +9,7 @@ configurable string hostname = ?;
 configurable string username = ?;
 configurable string password = ?;
 configurable string database = ?;
-configurable string port = ?;
+configurable int port = ?;
 configurable string e2metricsAPIBaseURL = ?;
 
 http:Client github = check new (e2metricsAPIBaseURL);
