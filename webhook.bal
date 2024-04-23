@@ -1,12 +1,18 @@
-import ballerinax/trigger.asgardeo;
-import ballerina/log;
 import ballerina/http;
+import ballerina/log;
 import ballerinax/mysql;
 import ballerinax/mysql.driver as _;
-
-http:Client github = check new ("https://ccc89048-bed6-43e6-9dd7-51f1e03d45c4-dev.e1-us-east-azure.choreoapis.dev/hmjo/e2metrics/1.0.0");
+import ballerinax/trigger.asgardeo;
 
 configurable asgardeo:ListenerConfig config = ?;
+configurable string hostname = ?;
+configurable string username = ?;
+configurable string password = ?;
+configurable string database = ?;
+configurable string port = ?;
+configurable string e2metricsAPIBaseURL = ?;
+
+http:Client github = check new (e2metricsAPIBaseURL);
 
 listener http:Listener httpListener = new (8090);
 listener asgardeo:Listener webhookListener = new (config, httpListener);
@@ -16,7 +22,7 @@ mysql:Options mysqlOptions = {
     },
     connectTimeout: 100
 };
-mysql:Client dbClient = check new ("e2metrics.cu0vbdes0onb.eu-north-1.rds.amazonaws.com", "admin", "yYaN!3nGec%SHt", "E2Metrices", 3306);
+mysql:Client dbClient = check new (hostname, username, password, database, port);
 
 type EventData record {
     string 'userName?;
